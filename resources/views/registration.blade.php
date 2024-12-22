@@ -20,7 +20,7 @@
 					<img src="images/registration-form-1.jpg" alt="">
 				</div>
 				<form action="">
-					<h3>Registration Form</h3>
+					<h3>Welcome to AquaVision</h3>
 					<div class="form-group">
 						<input type="text" placeholder="First Name" class="form-control">
 						<input type="text" placeholder="Last Name" class="form-control">
@@ -53,6 +53,7 @@
 					<button>Register
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
+					<h4>Already have an account? <a href="{{ route('login') }}">Login</a></h4>
 				</form>
 			</div>
 		</div>
