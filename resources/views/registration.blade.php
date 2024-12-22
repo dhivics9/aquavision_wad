@@ -53,7 +53,7 @@
 					<button>Register
 						<i class="zmdi zmdi-arrow-right"></i>
 					</button>
-					<h4>Already have an account? <a href="{{ route('login') }}">Login</a></h4>
+					<h4 class="center-text" style="margin-top: 1rem;">Already have an account? <a href="{{ route('login') }}">Login</a></h4>
 				</form>
 			</div>
 		</div>

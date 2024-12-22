@@ -13,10 +13,10 @@
 	</head>
 
 	<body>
-    <div class="wrapper" style="background-image: url('{{ asset('images/bg-registration-form-1.jpg') }}');">
+    <div class="wrapper" style="background-color: white">
         <div class="inner">
             <div class="image-holder">
-                <img src="images/registration-form-1.jpg" alt="">
+                <img src="{{ asset('images/login.png') }}" alt="">
             </div>
             <form action="{{ route('login') }}" method="POST">
                 @csrf
@@ -32,7 +32,7 @@
                 <button type="submit">Login
                     <i class="zmdi zmdi-arrow-right"></i>
                 </button>
-                <h4>Don't have an account? <a href="{{ route('registration') }}">Register</a></h4>
+                <h4 class="center-text" style="margin-top: 1rem">Don't have an account? <a href="{{ route('registration') }}">Register</a></h4>
             </form>
         </div>
     </div>
