@@ -14,10 +14,10 @@
 
 	<body>
 
-		<div class="wrapper" style="background-image: url({{ asset('images/bg-registration-form-1.jpg') }});">
+	<div class="wrapper" style="background-color: white">
 			<div class="inner">
 				<div class="image-holder">
-					<img src="images/registration-form-1.jpg" alt="">
+					<img src="images/login.png" alt="">
 				</div>
 				<form action="">
 					<h3>Welcome to AquaVision</h3>
