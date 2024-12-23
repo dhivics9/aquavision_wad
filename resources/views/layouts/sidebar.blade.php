@@ -29,7 +29,7 @@
                         </span>
                     </div>
                     <div class="ms-3 d-none d-sm-inline ">
-                        <span>Data Dosen</span>
+                        <span>Data Sensor</span>
                     </div>
                     @if (Route::is('dosen.index'))
                         <div class="ms-3">
@@ -46,7 +46,7 @@
                         </span>
                     </div>
                     <div class="ms-3 d-none d-sm-inline ">
-                        <span>Data Mahasiswa</span>
+                        <span>Data Analisis</span>
                     </div>
                     @if (Route::is('mahasiswa.index'))
                         <div class="ms-3">
@@ -64,7 +64,7 @@
                         </span>
                     </div>
                     <div class="ms-3 d-none d-sm-inline ">
-                        <span>Tambah Dosen</span>
+                        <span>Tambah Sensor</span>
                     </div>
                     @if (Route::is('dosen.create'))
                         <div class="ms-3">
@@ -81,7 +81,7 @@
                         </span>
                     </div>
                     <div class="ms-3 d-none d-sm-inline ">
-                        <span>Tambah Mahasiswa</span>
+                        <span>Lihat Laporan</span>
                     </div>
                     @if (Route::is('mahasiswa.create'))
                         <div class="ms-3">
