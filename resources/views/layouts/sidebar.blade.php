@@ -4,8 +4,8 @@
             <span class="fs-5 d-none d-sm-inline fw-bold">AquaVision</span>
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-            <li class="nav-item mb-5 @if (Route::is('dashboard')) fw-bold @endif">
-                <a href="/dashboard" class="nav-link px-0 align-middle text-white d-flex">
+            <li class="nav-item mb-5 @if (Route::is('home')) fw-bold @endif">
+                <a href="/home" class="nav-link px-0 align-middle text-white d-flex">
                     <div class="">
                         <span class="material-symbols-rounded">
                             dashboard
@@ -14,24 +14,24 @@
                     <div class="ms-3 d-none d-sm-inline fs-5">
                         <span>Dashboard</span>
                     </div>
-                    @if (Route::is('dashboard'))
+                    @if (Route::is('home'))
                         <div class="ms-3">
                             <span class="material-symbols-rounded fs-6 text-warning shadow">circle</span>
                         </div>
                     @endif
                 </a>
             </li>
-            <li class="mb-3 @if (Route::is('dosen.index')) fw-bold ms-3 @endif">
-                <a href="/dosen" class="nav-link px-0 align-middle text-white d-flex">
+            <li class="mb-3 @if (Route::is('sensor')) fw-bold ms-3 @endif">
+                <a href="/sensor" class="nav-link px-0 align-middle text-white d-flex">
                     <div class="">
                         <span class="material-symbols-rounded">
                             book_4
                         </span>
                     </div>
                     <div class="ms-3 d-none d-sm-inline ">
-                        <span>Data Dosen</span>
+                        <span>Data Sensor</span>
                     </div>
-                    @if (Route::is('dosen.index'))
+                    @if (Route::is('sensor'))
                         <div class="ms-3">
                             <span class="material-symbols-rounded fs-6 text-warning shadow">circle</span>
                         </div>
@@ -46,7 +46,7 @@
                         </span>
                     </div>
                     <div class="ms-3 d-none d-sm-inline ">
-                        <span>Data Mahasiswa</span>
+                        <span>Data Analisis</span>
                     </div>
                     @if (Route::is('mahasiswa.index'))
                         <div class="ms-3">
@@ -64,7 +64,7 @@
                         </span>
                     </div>
                     <div class="ms-3 d-none d-sm-inline ">
-                        <span>Tambah Dosen</span>
+                        <span>Tambah Sensor</span>
                     </div>
                     @if (Route::is('dosen.create'))
                         <div class="ms-3">
@@ -81,7 +81,7 @@
                         </span>
                     </div>
                     <div class="ms-3 d-none d-sm-inline ">
-                        <span>Tambah Mahasiswa</span>
+                        <span>Lihat Laporan</span>
                     </div>
                     @if (Route::is('mahasiswa.create'))
                         <div class="ms-3">
