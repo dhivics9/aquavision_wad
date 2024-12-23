@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('password');
             $table->timestamps();
+            $table->foreignId('subcription_id')->constrained('subcription')->onDelete('cascade');
 
         });
 

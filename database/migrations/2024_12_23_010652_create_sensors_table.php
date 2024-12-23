@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('sensor location')->unique();
             $table->time('sensor status')->default('active');
             $table->timestamps();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }
 
