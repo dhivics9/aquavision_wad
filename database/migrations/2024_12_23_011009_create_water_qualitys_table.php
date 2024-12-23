@@ -32,6 +32,7 @@ return new class extends Migration
             $table->timestamp('collected_at');
             $table->timestamp('created_at')->useCurrent();
             $table->foreignId('sensor_id')->constrained('sensors');
+            $table->foreignId('user_id')->constrained('users');
         });
 
         Schema::create('coagulation_analysis', function (Blueprint $table) {
@@ -80,5 +81,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('water_qualitys');
+        Schema::dropIfExists('coagulation_analysis');
+        Schema::dropIfExists('flocculation_analysis');
+        Schema::dropIfExists('sedimentation_analysis');
+        Schema::dropIfExists('filtration_analysis');
+        Schema::dropIfExists('disinfection_analysis');
     }
 };
