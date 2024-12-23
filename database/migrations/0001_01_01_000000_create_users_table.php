@@ -11,6 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        Schema::create('subcription', function (Blueprint $table) {
+            $table->id();
+            $table->string('subcription type')->unique();
+            $table->time('subcription duration');
+            $table->timestamp('subcription start date')->nullable();
+            $table->timestamp('subcription end date')->nullable();
+        });
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('First Name')->unique();
@@ -22,16 +31,23 @@ return new class extends Migration
             $table->string('password');
             $table->timestamps();
             $table->foreignId('subcription_id')->constrained('subcription')->onDelete('cascade');
-
         });
 
-        Schema::create('subcription', function (Blueprint $table) {
-            $table->id('subcription_id');
-            $table->string('subcription type')->unique();
-            $table->time('subcription duration');
-            $table->timestamp('subcription start date');
-            $table->timestamp('subcription end date');
+        Schema::create('password_reset_tokens', function (Blueprint $table) {
+            $table->string('email')->primary();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
+
+        Schema::create('sessions', function (Blueprint $table) {
+            $table->string('id')->primary();
+            $table->foreignId('user_id')->nullable()->index();
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+            $table->longText('payload');
+            $table->integer('last_activity')->index();
+        });
+
     }
 
     /**
@@ -41,5 +57,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
         Schema::dropIfExists('subcription');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('sessions');
     }
 };

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('water_qualitys', function (Blueprint $table) {
-            $table->id('data_id');
+            $table->id();
             $table->decimal('ph_level', 4, 2);
             $table->decimal('turbidity', 6, 2);
             $table->decimal('temperature', 5, 2);
@@ -36,38 +36,38 @@ return new class extends Migration
         });
 
         Schema::create('coagulation_analysis', function (Blueprint $table) {
-            $table->id('coagulation_id');
-            $table->foreignId('data_id')->constrained('water_qualitys');
+            $table->id();
+            $table->foreignId('water_qualitys_id')->constrained('water_qualitys');
             $table->decimal('chemical_dosage', 10, 2);
             $table->timestamps();
     });
 
         Schema::create('flocculation_analysis', function (Blueprint $table) {
-            $table->id('flocculation_id');
-            $table->foreignId('data_id')->constrained('water_qualitys');
+            $table->id();
+            $table->foreignId('water_qualitys_id')->constrained('water_qualitys');
             $table->decimal('mixing_time', 10, 2);
             $table->decimal('floc_size', 10, 2);
             $table->timestamps();
     });
 
         Schema::create('sedimentation_analysis', function (Blueprint $table) {
-            $table->id('sedimentation_id');
-            $table->foreignId('data_id')->constrained('water_qualitys');
+            $table->id();
+            $table->foreignId('water_qualitys_id')->constrained('water_qualitys');
             $table->decimal('sedimentation_rate', 10, 2);
             $table->timestamps();
     });
 
         Schema::create('filtration_analysis', function (Blueprint $table) {
-            $table->id('filtration_id');
-            $table->foreignId('data_id')->constrained('water_qualitys');
+            $table->id();
+            $table->foreignId('water_qualitys_id')->constrained('water_qualitys');
             $table->string('filter_type', 100);
             $table->decimal('filter_efficiency', 10, 2);
             $table->timestamps();
     });
 
         Schema::create('disinfection_analysis', function (Blueprint $table) {
-            $table->id('disinfection_id');
-            $table->foreignId('data_id')->constrained('water_qualitys');
+            $table->id();
+            $table->foreignId('water_qualitys_id')->constrained('water_qualitys');
             $table->string('disinfectant_type', 100);
             $table->decimal('contact_time', 10, 2);
             $table->decimal('residual_chlorine_level', 10, 2);
