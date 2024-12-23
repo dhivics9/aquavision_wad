@@ -10,10 +10,17 @@
 
 	<body>
 
+<<<<<<< Updated upstream
 		<div class="wrapper" style="background-image: url({{ asset('images/bg-registration-form-wtp.jpg') }});">
 			<div class="inner">
 				<div class="image-holder">
 					<img src="images/registration-form-telu.png" alt="">
+=======
+		<div class="wrapper" style="background-color: white">
+			<div class="inner">
+				<div class="image-holder">
+					<img src="images/login.png" alt="">
+>>>>>>> Stashed changes
 				</div>
 				<form action=""{{ route('registration') }}" method="POST"">
 					<h3>Welcome to AquaVision</h3>
