@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sensors', function (Blueprint $table) {
-            $table->id();
+            $table->id('sensor_id');
             $table->string('sensor name')->unique();
             $table->string('sensor type')->unique();
             $table->string('sensor location')->unique();
