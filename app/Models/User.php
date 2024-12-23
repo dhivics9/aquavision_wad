@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Model
@@ -34,5 +35,9 @@ class User extends Model
     public function waterMonitorings():HasMany
     {
         return $this->hasMany(WaterMonitoring::class, 'data_id', 'id');
+    }
+    public function subcription():BelongsTo
+    {
+        return $this->belongsTo(subcription::class, 'subcription_id', 'id');
     }
 }

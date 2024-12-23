@@ -26,7 +26,7 @@ return new class extends Migration
         });
 
         Schema::create('subcription', function (Blueprint $table) {
-            $table->id();
+            $table->id('subcription_id');
             $table->string('subcription type')->unique();
             $table->time('subcription duration');
             $table->timestamp('subcription start date');
