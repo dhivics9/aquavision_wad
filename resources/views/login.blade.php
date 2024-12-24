@@ -21,12 +21,17 @@
 
 <body>
     <div class="wrapper" style="background-color: white">
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success</strong> Please Login!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <div class="inner">
             <div class="image-holder">
                 <img src="{{ asset('images/login.png') }}" alt="">
             </div>
             <form action="{{ route('login') }}" method="POST">
-
                 @if (session()->has('loginError'))
                     <div class="alert alert-danger alert-dismissable fade show" role="alert">
                         {{ session('loginError') }}
@@ -50,6 +55,8 @@
                     <i class="zmdi zmdi-lock"></i>
                 </div>
                 <button type="submit">Login</button>
+                <p class="center-text" style="margin-top: 1rem">Don't have an account? <a
+                        href="{{ route('registration') }}">Register</a></p>
             </form>
         </div>
     </div>

@@ -22,10 +22,10 @@ return new class extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('First_Name')->unique();
-            $table->string('Last_Name')->unique();
+            $table->string('First_Name');
+            $table->string('Last_Name');
             $table->string('role')->default('user');
-            $table->string('enterprise')->unique() ->nullable();
+            $table->string('enterprise')->unique()->nullable();
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('password');

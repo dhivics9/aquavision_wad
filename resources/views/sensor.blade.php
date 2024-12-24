@@ -21,8 +21,6 @@
                         </div>
                     </div> -->
 
-
-
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h3>Data Sensor</h3>
