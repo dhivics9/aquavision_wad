@@ -14,8 +14,8 @@ class User extends Authenticatable implements AuthenticatableContract
 {
     use HasFactory;
     protected $fillable = [
-        'First Name',
-        'Last Name',
+        'First_Name',
+        'Last_Name',
         'role',
         'enterprise',
         'email',

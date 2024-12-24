@@ -11,9 +11,12 @@ use App\Http\Controllers\SensorController;
 //     return view('login');
 // });
 
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
 Route::post('/', [LoginController::class, 'login'])->name('login');
-Route::get('/register', [RegistrationController::class, 'showRegistrationForm'])->name('registration');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/sensor', [SensorController::class, 'index'])->name('sensor');
+
+Route::get('/register', [RegistrationController::class, 'showRegistrationForm'])->name('registration')->middleware('guest');
+Route::post('/register', [RegistrationController::class, 'store'])->name('registration');
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/sensor', [SensorController::class, 'index'])->name('sensor')->middleware('auth');
