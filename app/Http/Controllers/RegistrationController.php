@@ -43,7 +43,7 @@ class RegistrationController extends Controller
             'subcription_id' => null,
         ]);
 
-        $request->session()->flash('success', 'Registration success!');
+        $request->session()->put('success', 'Registration success!');
 
         return redirect('/');
     }
