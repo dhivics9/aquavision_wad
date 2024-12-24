@@ -73,6 +73,25 @@
                     @endif
                 </a>
             </li>
+
+            <li class="mb-3 @if (Route::is('dosen.create')) fw-bold ms-3 @endif">
+                <a href="/dosen/create" class="nav-link px-0 align-middle text-white d-flex">
+                    <div class="">
+                        <span class="material-symbols-rounded">
+                            add
+                        </span>
+                    </div>
+                    <div class="ms-3 d-none d-sm-inline ">
+                        <span>Tambah Data Air</span>
+                    </div>
+                    @if (Route::is('dosen.create'))
+                        <div class="ms-3">
+                            <span class="material-symbols-rounded fs-6 text-warning shadow">circle</span>
+                        </div>
+                    @endif
+                </a>
+            </li>
+
             <li class="mb-3 @if (Route::is('mahasiswa.create')) fw-bold ms-3 @endif">
                 <a href="/mahasiswa/create" class="nav-link px-0 align-middle text-white d-flex">
                     <div class="">
