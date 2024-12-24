@@ -7,7 +7,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <h3 class="text-primary">Total Sensor</h3>
+                            <h3 style="color: #014A57;">Total Sensor</h3>
                             <p class="text-secondary">10</p>
                         </div>
                         <div class="col-md-4">
@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
@@ -67,9 +67,9 @@
                 }
             }
         });
-    </script>
+    </script> --}}
 @endsection
-<script>
+{{-- <script>
     const barCtx = document.getElementById('barChart').getContext('2d');
     const barChart = new Chart(barCtx, {
         type: 'bar',
@@ -109,4 +109,4 @@
             }
         }
     });
-    </script>
+    </script> --}}

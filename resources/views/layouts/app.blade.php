@@ -22,7 +22,7 @@
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <div
-                class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark bg-gradient rounded-end-3 vh-100 position-sticky top-0">
+                class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 rounded-end-3 vh-100 position-sticky top-0" style="background-color: #014A57">
                 @include('layouts.sidebar')
             </div>
             <div class="col py-3">
