@@ -23,3 +23,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 Route::get('/sensor', [SensorController::class, 'index'])->name('sensor')->middleware('auth');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile');
