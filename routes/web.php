@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SensorController;
 
 // Route::get('/', function () {
@@ -20,3 +21,5 @@ Route::post('/register', [RegistrationController::class, 'store'])->name('regist
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/sensor', [SensorController::class, 'index'])->name('sensor')->middleware('auth');
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');

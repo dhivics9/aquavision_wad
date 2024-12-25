@@ -14,9 +14,19 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                    <form action="/logout" method="post">
+
+                    <a href="{{ route('profile') }}" style="text-decoration: none"><button type="submit" class="dropdown-item"><img src="{{ asset('images/person-fill.svg') }}" alt=""> Profile</button></a>
+
+                    {{-- <form action="{{ route('profile') }}">
                         @csrf
-                        <button type="submit" class="dropdown-item">Logout</button>
+                        
+                    </form> --}}
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="dropdown-item" style="color: red"><img src="{{ asset('images/box-arrow-right.svg') }}" alt=""> Logout</button>
                     </form>
                 </li>
             </ul>
