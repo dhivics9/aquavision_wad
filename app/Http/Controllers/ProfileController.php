@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -13,20 +15,24 @@ class ProfileController extends Controller
         return view('profile', compact('user'));
     }
 
-    public function login(Request $request)
+    public function update(Request $request, User $user)
     {
         $credentials = $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'enterprise' => 'nullable',
             'email' => 'required|email:dns',
-            'password' => 'required'
+            // 'phone' => 'required|numeric|unique:users,phone,' . $user->id,
+            // 'password' => 'required|confirmed|min:8',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        dd($user);
 
-            return redirect()->intended('/home');
-        }
+        // $user->update($credentials);
 
-        return back()->with('loginError', 'Login failed!');
+        // $request->session()->put('success', 'Registration success!');
+
+        // return redirect('/profile');
     }
 
 }
