@@ -69,44 +69,4 @@
         });
     </script> --}}
 @endsection
-{{-- <script>
-    const barCtx = document.getElementById('barChart').getContext('2d');
-    const barChart = new Chart(barCtx, {
-        type: 'bar',
-        data: {
-            labels: ['Januari', 'Februari', 'Maret', 'April'],
-            datasets: [{
-                label: 'Total Penggunaan Air',
-                data: [30, 50, 70, 90],
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: 'Grafik Total Penggunaan Air Bulanan'
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(200, 200, 200, 0.2)'
-                    }
-                },
-                x: {
-                    grid: {
-                        color: 'rgba(200, 200, 200, 0.2)'
-                    }
-                }
-            }
-        }
-    });
-    </script> --}}
+
