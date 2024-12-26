@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SensorController;
+use App\Http\Controllers\SessionController;
 
 // Route::get('/', function () {
 //     return view('login');
@@ -22,5 +23,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->midd
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/sensor', [SensorController::class, 'index'])->name('sensor')->middleware('auth');
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
-Route::put('/profile', [ProfileController::class, 'update'])->name('profile');
+Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
+Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile');
+
+Route::post('/clear-session', [SessionController::class, 'clearSession'])->name('clear.session');

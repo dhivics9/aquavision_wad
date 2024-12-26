@@ -17,22 +17,32 @@ class ProfileController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
             'enterprise' => 'nullable',
-            'email' => 'required|email:dns',
-            // 'phone' => 'required|numeric|unique:users,phone,' . $user->id,
-            // 'password' => 'required|confirmed|min:8',
+            'email' => 'required|email:dnsunique:users,email,' . $user->id,
+            'phone' => 'required|numeric|unique:users,phone,' . $user->id,
+            'password' => 'nullable|confirmed|min:8',
         ]);
 
-        dd($user);
+        $user->update([
+            'First_Name' => $request->firstName,
+            'Last_Name' => $request->lastName,
+            'enterprise' => null,
+            'email' => $request->email,
+            'phone' => $request->phone,            
+        ]);
 
-        // $user->update($credentials);
+        if (!empty($request->password)) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+        }
 
-        // $request->session()->put('success', 'Registration success!');
+        $request->session()->put('updateProfile', 'Successfully updated your profile!');
 
-        // return redirect('/profile');
+        return redirect('/profile/$user');
     }
 
 }

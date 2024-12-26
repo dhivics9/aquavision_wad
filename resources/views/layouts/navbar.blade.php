@@ -16,7 +16,7 @@
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
 
-                    <a href="{{ route('profile') }}" style="text-decoration: none"><button type="submit" class="dropdown-item"><img src="{{ asset('images/person-fill.svg') }}" alt=""> Profile</button></a>
+                    <a href="{{ route('profile', Auth::user()) }}" style="text-decoration: none"><button type="submit" class="dropdown-item"><img src="{{ asset('images/person-fill.svg') }}" alt=""> Profile</button></a>
 
                     {{-- <form action="{{ route('profile') }}">
                         @csrf
