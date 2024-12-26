@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -13,20 +15,34 @@ class ProfileController extends Controller
         return view('profile', compact('user'));
     }
 
-    public function login(Request $request)
+    public function update(Request $request, User $user)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email:dns',
-            'password' => 'required'
+        $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'enterprise' => 'nullable',
+            'email' => 'required|email:dnsunique:users,email,' . $user->id,
+            'phone' => 'required|numeric|unique:users,phone,' . $user->id,
+            'password' => 'nullable|confirmed|min:8',
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        $user->update([
+            'First_Name' => $request->firstName,
+            'Last_Name' => $request->lastName,
+            'enterprise' => null,
+            'email' => $request->email,
+            'phone' => $request->phone,            
+        ]);
 
-            return redirect()->intended('/home');
+        if (!empty($request->password)) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
         }
 
-        return back()->with('loginError', 'Login failed!');
+        $request->session()->put('updateProfile', 'Successfully updated your profile!');
+
+        return redirect('/profile/$user');
     }
 
 }

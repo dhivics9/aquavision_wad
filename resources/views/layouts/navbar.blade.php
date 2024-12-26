@@ -9,13 +9,14 @@
         @endif --}}
         @if (Auth::check())
         <div class="dropdown ms-auto">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{{ asset('images/person-fill.svg') }}" alt="">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 500">
+                {{-- <img src="{{ asset('images/person-fill.svg') }}" alt=""> --}}
+                Hai, {{ Auth::user()->First_Name }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
 
-                    <a href="{{ route('profile') }}" style="text-decoration: none"><button type="submit" class="dropdown-item"><img src="{{ asset('images/person-fill.svg') }}" alt=""> Profile</button></a>
+                    <a href="{{ route('profile', Auth::user()) }}" style="text-decoration: none"><button type="submit" class="dropdown-item"><img src="{{ asset('images/person-fill.svg') }}" alt=""> Profile</button></a>
 
                     {{-- <form action="{{ route('profile') }}">
                         @csrf

@@ -34,10 +34,10 @@
                 @endif
 
                 @if (session()->has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Success</strong> Please Login!
-                </div>
-            @endif
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>Success</strong> Please Login!
+                    </div>
+                @endif
 
                 @csrf
                 <h3>Welcome to AquaVision</h3>
