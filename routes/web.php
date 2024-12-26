@@ -21,7 +21,11 @@ Route::post('/register', [RegistrationController::class, 'store'])->name('regist
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+
 Route::get('/sensor', [SensorController::class, 'index'])->name('sensor')->middleware('auth');
+Route::resource('/sensor', SensorController::class);
+Route::get('/create_sensor', [SensorController::class, 'getCreateForm'])->name('create_sensor');
+Route::post('/create_sensor', [SensorController::class, 'store'])->name('store_sensor');
 
 Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
 Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile');

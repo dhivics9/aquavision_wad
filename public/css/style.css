@@ -211,3 +211,26 @@ button {
     margin-top: 60px; } }
 
 /*# sourceMappingURL=style.css.map */
+
+/* =============== Sensor ================ */
+.animation-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.animated-image {
+  width: 100%;
+  animation: svg-spin 3s linear infinite;
+}
+
+@keyframes svg-spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}
+
