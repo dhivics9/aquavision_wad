@@ -9,7 +9,6 @@ class subcription extends Model
 {
     //
     protected $fillable = [
-        'subcription_id',
         'subcription type',
         'subcription duration',
         'subcription start date',

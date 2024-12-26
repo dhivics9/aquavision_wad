@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('water_qualitys', function (Blueprint $table) {
-            $table->id();
+            $table->id('water_qualitys_id');
             $table->decimal('ph_level', 4, 2);
             $table->decimal('turbidity', 6, 2);
             $table->decimal('temperature', 5, 2);
