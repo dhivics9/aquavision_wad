@@ -5,14 +5,25 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SensorController;
+use App\Http\Controllers\SessionController;
 
-Route::get('/', function () {
-    return view('login');
-});
+// Route::get('/', function () {
+//     return view('login');
+// });
 
-Route::get('/register', [RegistrationController::class, 'showRegistrationForm'])->name('registration');
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
+Route::post('/', [LoginController::class, 'login'])->name('login');
+
+Route::get('/register', [RegistrationController::class, 'showRegistrationForm'])->name('registration')->middleware('guest');
+Route::post('/register', [RegistrationController::class, 'store'])->name('registration');
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/sensor', [SensorController::class, 'index'])->name('sensor')->middleware('auth');
+
+Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
+Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile');
+
+Route::post('/clear-session', [SessionController::class, 'clearSession'])->name('clear.session');

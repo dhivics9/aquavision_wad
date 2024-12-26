@@ -7,5 +7,31 @@
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         @endif --}}
+        @if (Auth::check())
+        <div class="dropdown ms-auto">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-weight: 500">
+                {{-- <img src="{{ asset('images/person-fill.svg') }}" alt=""> --}}
+                Hai, {{ Auth::user()->First_Name }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+
+                    <a href="{{ route('profile', Auth::user()) }}" style="text-decoration: none"><button type="submit" class="dropdown-item"><img src="{{ asset('images/person-fill.svg') }}" alt=""> Profile</button></a>
+
+                    {{-- <form action="{{ route('profile') }}">
+                        @csrf
+                        
+                    </form> --}}
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="dropdown-item" style="color: red"><img src="{{ asset('images/box-arrow-right.svg') }}" alt=""> Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+        @endif
     </div>
 </nav>

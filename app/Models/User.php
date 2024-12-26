@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable implements AuthenticatableContract
 {
     use HasFactory;
     protected $fillable = [
-        'First Name',
-        'Last Name',
+        'First_Name',
+        'Last_Name',
         'role',
         'enterprise',
         'email',

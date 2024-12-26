@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sensors', function (Blueprint $table) {
-            $table->id('sensor_id');
-            $table->string('sensor name')->unique();
-            $table->string('sensor type')->unique();
-            $table->string('sensor location')->unique();
-            $table->time('sensor status')->default('active');
-            $table->timestamps();
+            $table->id();
+            $table->string('sensor_name')->unique();
+            $table->string('sensor_type')->unique();
+            $table->string('sensor_location')->unique();
+            $table->string('sensor_status')->default('active');
+            // $table->timestamps()->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });
     }

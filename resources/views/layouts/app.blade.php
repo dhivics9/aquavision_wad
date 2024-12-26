@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Data Bang Deka</title>
+    <title>AquaVision</title>
 
     {{-- Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -14,13 +14,15 @@
     {{-- Material Icons --}}
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+
+    <link rel="icon" href="{{ asset('images/icon.png') }}">
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <div
-                class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark bg-gradient rounded-end-3 vh-100 position-sticky top-0">
+                class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 rounded-end-3 vh-100 position-sticky top-0" style="background-color: #014A57">
                 @include('layouts.sidebar')
             </div>
             <div class="col py-3">
