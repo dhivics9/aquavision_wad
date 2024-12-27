@@ -26,6 +26,8 @@ Route::get('/sensor', [SensorController::class, 'index'])->name('sensor')->middl
 Route::resource('/sensor', SensorController::class);
 Route::get('/create_sensor', [SensorController::class, 'getCreateForm'])->name('create_sensor');
 Route::post('/create_sensor', [SensorController::class, 'store'])->name('store_sensor');
+Route::put('/sensors/{id}', [SensorController::class, 'update'])->name('sensor.update');
+
 
 Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
 Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile');

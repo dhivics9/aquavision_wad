@@ -21,6 +21,8 @@ class Sensor extends Model
         'sensor_type',
         'sensor_location',
         'sensor_status',
+        'created_at',
+        'updated_at',
     ];
     public function users():BelongsTo
     {

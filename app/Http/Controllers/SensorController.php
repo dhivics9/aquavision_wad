@@ -20,7 +20,6 @@ class SensorController extends Controller
 
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'sensor_name' => 'required|string|max:255',
             'sensor_type' => 'required|string|max:255',
@@ -32,6 +31,7 @@ class SensorController extends Controller
 
         return redirect()->route('sensor.index')->with('success', 'Sensor added successfully!');
     }
+
 
 
     public function show(Sensor $sensor)
@@ -51,32 +51,26 @@ class SensorController extends Controller
 
     public function update(Request $request, $id)
     {
-        $sensor = Sensor::findOrFail($id);
-
         $validatedData = $request->validate([
             'sensor_name' => 'required|string|max:255',
             'sensor_type' => 'required|string|max:255',
             'sensor_location' => 'required|string|max:255',
             'sensor_status' => 'nullable|string|in:active,inactive',
             'last_active' => 'nullable|date',
-            'user_id' => 'required|exists:users,id',
         ]);
 
+        $sensor = Sensor::findOrFail($id);
         $sensor->update($validatedData);
 
-        return response()->json([
-            'message' => 'Sensor updated successfully.',
-            'data' => $sensor,
-        ]);
+        return redirect()->route('sensor.index')->with('success', 'Sensor updated successfully!');
     }
+
+
 
     public function destroy($id)
     {
         $sensor = Sensor::findOrFail($id);
         $sensor->delete();
-
-        return response()->json([
-            'message' => 'Sensor deleted successfully.',
-        ]);
+        return redirect()->route('sensor.index')->with('success', 'Sensor delete successfully!');
     }
 }
