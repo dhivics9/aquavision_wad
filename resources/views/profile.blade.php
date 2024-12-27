@@ -97,12 +97,12 @@
                             <div class="col-md-6">
                                 <div class="form-group" style="margin-bottom: 1rem">
                                     <label for="inputPassword5">New Password</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword5" />
+                                    <input type="password" name="password" class="form-control" id="inputPassword5" placeholder="Your New Passowrd"/>
                                 </div>
                                 <div class="form-group" style="margin-bottom: 1rem">
                                     <label for="inputPassword6">Confirm Password</label>
                                     <input type="password" name="password_confirmation" class="form-control"
-                                        id="inputPassword6" />
+                                        id="inputPassword6" placeholder="Retype Your New Passowrd"/>
                                 </div>
                             </div>
                             <div class="col-md-6">

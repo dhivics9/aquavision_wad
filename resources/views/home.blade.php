@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container-fluid">
         <!-- Dashboard Row -->
         <div class="row">
@@ -11,19 +10,17 @@
                     <div class="card-body">
                         <h4 class="card-title text-primary">Total Sensors</h4>
                         <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center" onclick="showChart('sensor1')">
-                                Sensor 1
-                                <span class="badge bg-primary">Active</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center" onclick="showChart('sensor2')">
-                                Sensor 2
-                                <span class="badge bg-success">Active</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center" onclick="showChart('sensor3')">
-                                Sensor 3
-                                <span class="badge bg-danger">Inactive</span>
-                            </li>
-                            <!-- Add more sensors here -->
+                            @foreach ($sensors as $sensor)
+                                <li class="list-group-item d-flex justify-content-between align-items-center"
+                                    onclick="showChart('sensor1')">
+                                    {{ $sensor->sensor_name }}
+                                    @if ($sensor->sensor_status == 'active')
+                                        <span class="badge bg-success">{{ $sensor->sensor_status }}</span>
+                                    @endif
+                                    @if ($sensor->sensor_status != 'active')
+                                    <span class="badge bg-danger">{{ $sensor->sensor_status }}</span>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -39,15 +36,24 @@
                 </div>
             </div>
 
-            <!-- Chart Card -->
             <div class="col-md-4">
+                <div class="card shadow-sm rounded">
+                    <div class="card-body">
+                        <h4 class="card-title text-info">Analysis Chart</h4>
+                        <p class="text-secondary">200</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Card -->
+            {{-- <div class="col-md-4">
                 <div class="card shadow-sm rounded">
                     <div class="card-body">
                         <h4 class="card-title text-info">Analysis Chart</h4>
                         <canvas id="myChart" width="400" height="200"></canvas>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
     </div>
@@ -58,9 +64,8 @@
 
         function showChart(sensorId) {
             let chartData;
-
             // Define data for each sensor
-            switch(sensorId) {
+            switch (sensorId) {
                 case 'sensor1':
                     chartData = {
                         labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
@@ -140,5 +145,4 @@
             });
         }
     </script>
-
 @endsection
