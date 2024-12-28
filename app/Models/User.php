@@ -21,7 +21,7 @@ class User extends Authenticatable implements AuthenticatableContract
         'email',
         'phone',
         'password',
-        'subcription_id',
+        'subscription',
     ];
 
     public function sensors():HasMany
@@ -38,8 +38,8 @@ class User extends Authenticatable implements AuthenticatableContract
     {
         return $this->hasMany(WaterMonitoring::class, 'data_id', 'id');
     }
-    public function subcription():BelongsTo
-    {
-        return $this->belongsTo(subcription::class, 'subcription_id', 'id');
+
+    public function subscription() {
+        return $this->hasOne(Subscription::class);
     }
 }

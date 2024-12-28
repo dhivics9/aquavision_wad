@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SensorController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\SubscriptionController;
 
 // Route::get('/', function () {
 //     return view('login');
@@ -33,6 +34,10 @@ Route::delete('/sensors/{id}', [SensorController::class, 'destroy'])->name('sens
 Route::get('/analisis', [AnalisisController::class, 'index'])->name('analisis')->middleware('auth');
 
 Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
-Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile');
+Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
+Route::get('/subscription/{user}', [SubscriptionController::class, 'index'])->name('subscription')->middleware('auth');
+Route::post('/subscription/{user}', [SubscriptionController::class, 'store'])->name('subscription')->middleware('auth');
+Route::get('/subscription/success/{subscription}', [SubscriptionController::class, 'success'])->name('subscription.success')->middleware('auth');
 
 Route::post('/clear-session', [SessionController::class, 'clearSession'])->name('clear.session');

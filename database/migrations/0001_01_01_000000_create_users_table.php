@@ -12,14 +12,6 @@ return new class extends Migration
     public function up(): void
     {
 
-        Schema::create('subcription', function (Blueprint $table) {
-            $table->id();
-            $table->string('subcription_type')->unique();
-            $table->time('subcription_duration');
-            $table->timestamp('subcription_start_date')->nullable();
-            $table->timestamp('subcription_end_date')->nullable();
-        });
-
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('First_Name');
@@ -30,7 +22,19 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('password');
             $table->timestamps();
-            $table->foreignId('subcription_id')->nullable()->constrained('subcription')->onDelete('cascade');
+            $table->string('subscription')->nullable();
+        });
+
+        Schema::create('subscriptions', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('users_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->timestamp('subscription_duration');
+            $table->timestamp('subscription_start_date')->nullable();
+            $table->timestamp('subscription_end_date')->nullable();
+            $table->string('subscription_status')->default('active');
+            $table->string('snap_token')->nullable();
+            $table->string('payment_status')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -56,7 +60,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
-        Schema::dropIfExists('subcription');
+        Schema::dropIfExists('subscriptions');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }

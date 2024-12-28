@@ -8,6 +8,7 @@ class AnalisisController extends Controller
 {
     public function index()
     {
-        return view('analisis');
+        $nav = 'Analisis';
+        return view('analisis', compact('nav'));
     }
 }

@@ -31,7 +31,7 @@ class RegistrationController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
-            'subcription_id' => null,
+            'subcription' => null,
         ]);
 
         $request->session()->put('success', 'Registration success!');
