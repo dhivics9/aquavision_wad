@@ -1,6 +1,6 @@
 <nav class="">
     <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-3 text-white min-vh-100 ">
-        <a href="/" class="d-flex align-items-center pb-3 mb-md-3 me-md-auto text-white text-decoration-none">
+        <a href="/home" class="d-flex align-items-center pb-3 mb-md-3 me-md-auto text-white text-decoration-none">
             <span class="fs-5 d-none d-sm-inline fw-bold">AquaVision</span>
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
@@ -21,7 +21,7 @@
                     @endif
                 </a>
             </li>
-            <li class="mb-3 @if (Route::is('sensor')) fw-bold ms-3 @endif">
+            <li class="mb-3 @if (Route::is('sensor.index')) fw-bold ms-3 @endif">
                 <a href="/sensor" class="nav-link px-0 align-middle text-white d-flex">
                     <div class="">
                         <svg xmlns="http://www.w3.org/2000/svg" class="animated-image" width="25" height="25" fill="currentColor" viewBox="0 0 16 16">
@@ -31,15 +31,15 @@
                     <div class="ms-3 d-none d-sm-inline ">
                         <span>Data Sensor</span>
                     </div>
-                    @if (Route::is('sensor'))
+                    @if (Route::is('sensor.index'))
                         <div class="ms-3">
                             <span class="material-symbols-rounded fs-6 text-warning shadow">circle</span>
                         </div>
                     @endif
                 </a>
             </li>
-            <li class="mb-3 @if (Route::is('mahasiswa.index')) fw-bold ms-3 @endif">
-                <a href="/mahasiswa" class="nav-link px-0 align-middle text-white d-flex">
+            <li class="mb-3 @if (Route::is('analisis')) fw-bold ms-3 @endif">
+                <a href="/analisis" class="nav-link px-0 align-middle text-white d-flex">
                     <div class="">
                         <span class="material-symbols-rounded">
                             book_4
@@ -48,7 +48,7 @@
                     <div class="ms-3 d-none d-sm-inline ">
                         <span>Data Analisis</span>
                     </div>
-                    @if (Route::is('mahasiswa.index'))
+                    @if (Route::is('analisis'))
                         <div class="ms-3">
                             <span class="material-symbols-rounded fs-6 text-warning shadow">circle</span>
                         </div>
@@ -73,23 +73,23 @@
                     @endif
                 </a>
             </li>
-            <li class="mb-3 @if (Route::is('mahasiswa.create')) fw-bold ms-3 @endif">
-                <a href="/mahasiswa/create" class="nav-link px-0 align-middle text-white d-flex">
+            {{-- <li class="mb-3 @if (Route::is('sensor')) fw-bold ms-3 @endif">
+                <a href="/sensor" class="nav-link px-0 align-middle text-white d-flex">
                     <div class="">
                         <span class="material-symbols-rounded">
-                            add
+                            book_4
                         </span>
                     </div>
                     <div class="ms-3 d-none d-sm-inline ">
-                        <span>Lihat Laporan</span>
+                        <span>Data Analisis</span>
                     </div>
-                    @if (Route::is('mahasiswa.create'))
+                    @if (Route::is('sensor'))
                         <div class="ms-3">
                             <span class="material-symbols-rounded fs-6 text-warning shadow">circle</span>
                         </div>
                     @endif
                 </a>
-            </li>
+            </li> --}}
         </ul>
         <hr>
         {{-- @if (Auth::check())

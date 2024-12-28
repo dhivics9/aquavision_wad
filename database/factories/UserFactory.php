@@ -24,14 +24,14 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'First_Name' => 'Test User',
-            'Last_Name' => 'Test User',
+            'First_Name' => 'Adrian',
+            'Last_Name' => 'Daniel',
             'role' => 'user',
             'enterprise' => null,
             'email' => 'adriandaniel1803@gmail.com',
             'phone' => '085156638848',
             'password' => bcrypt('test'),
-            'subcription_id' => null,
+            'subscription' => null,
         ];
     }
 

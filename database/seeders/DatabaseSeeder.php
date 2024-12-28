@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Subscription;
 use App\Models\User;
+use Carbon\Carbon;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -16,14 +18,17 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'First_Name' => 'Test User',
-            'Last_Name' => 'Test User',
+            'First_Name' => 'Adrian',
+            'Last_Name' => 'Daniel',
             'role' => 'user',
             'enterprise' => null,
             'email' => 'adriandaniel1803@gmail.com',
             'phone' => '085156638848',
             'password' => bcrypt('test'),
-            'subcription_id' => null,
+            'subscription' => null,
         ]);
+
+        // Subscription::factory()->create();
+
     }
 }

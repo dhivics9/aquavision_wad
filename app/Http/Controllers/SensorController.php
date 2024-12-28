@@ -10,7 +10,9 @@ class SensorController extends Controller
     public function index()
     {
         $sensors = Sensor::all(); 
-        return view('sensor', compact('sensors')); 
+        $nav = 'Sensor';
+
+        return view('sensor', compact('sensors', 'nav')); 
     }
 
     public function getCreateForm()
@@ -64,8 +66,6 @@ class SensorController extends Controller
 
         return redirect()->route('sensor.index')->with('success', 'Sensor updated successfully!');
     }
-
-
 
     public function destroy($id)
     {

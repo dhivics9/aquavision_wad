@@ -53,8 +53,8 @@
                                         <label for="sensor_status" class="form-label text-custom">Status Sensor</label>
                                         <select class="form-control" id="sensor_status" name="sensor_status" required onchange="updateLastActive()">
                                             <option value="" disabled selected>Pilih Status</option>
-                                            <option value="active">Aktif</option>
-                                            <option value="inactive">Tidak Aktif</option>
+                                            <option value="active">active</option>
+                                            <option value="inactive">inactive</option>
                                         </select>
                                     </div>
                                     <div class="text-start">
@@ -191,6 +191,7 @@
         </div>
     </div>
 </div>
+@endsection
 
 <script>
     const editSensorModal = document.getElementById('editSensorModal');
@@ -212,4 +213,3 @@
     });
 </script>
 
-@endsection
