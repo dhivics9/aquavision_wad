@@ -17,11 +17,6 @@
                 <li>
 
                     <a href="{{ route('profile', Auth::user()) }}" style="text-decoration: none"><button type="submit" class="dropdown-item"><img src="{{ asset('images/person-fill.svg') }}" alt=""> Profile</button></a>
-
-                    {{-- <form action="{{ route('profile') }}">
-                        @csrf
-                        
-                    </form> --}}
                 </li>
                 <li><hr class="dropdown-divider"></li>
                 <li>

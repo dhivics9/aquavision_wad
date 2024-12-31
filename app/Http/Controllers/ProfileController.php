@@ -42,7 +42,7 @@ class ProfileController extends Controller
 
         $request->session()->put('updateProfile', 'Successfully updated your profile!');
 
-        return redirect('/profile/$user');
+        return view('profile', compact('user'));
     }
 
 }

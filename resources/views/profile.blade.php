@@ -20,21 +20,16 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-10 col-xl-8 mx-auto">
                 @if (Auth::check())
-                <form action="{{ route('clear.session') }}" method="POST">
-                    @csrf
-                    <button type="submit" style="text-decoration: none; border: none; background-color: white"> <h2 class="h3 mb-4 page-title" style="margin-top: 2rem;"> <img
-                        src="{{ asset('images/arrow-left.svg') }}" alt=""> Back to Home</h2> </button>
-
-                    {{-- <a href="{{ route('clear.session') }}" style="text-decoration: none; color: black">
-                        
-                    </a> --}}
-                </form>
-
+                    <form action="{{ route('clear.session') }}" method="POST">
+                        @csrf
+                        <button type="submit" style="text-decoration: none; border: none; background-color: white">
+                            <h2 class="h3 mb-4 page-title" style="margin-top: 2rem;"> <img
+                                    src="{{ asset('images/arrow-left.svg') }}" alt=""> Back to Home</h2>
+                        </button>
+                    </form>
                 @endif
                 <div class="my-4">
-                    <form action="{{ route('profile', $user->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
+                    <hr class="my-4" />
                         <div class="row mt-5 align-items-center">
                             <div class="col">
                                 @if (session()->has('updateProfile'))
@@ -42,31 +37,42 @@
                                         <strong>Success</strong> Successfully updated your profile!
                                     </div>
                                 @endif
+
                                 <div class="row align-items-center">
-                                    <div class="col-md-7">
+                                    <div class="col-md-6">
                                         <h4 class="mb-1">{{ $user->First_Name }} {{ $user->Last_Name }}</h4>
+                                    </div>
+                                    <div class="col-md-6" style="text-align: right">
+
+                                        @if ($user->subscription == null)
+                                        <a href="{{ route('subscription', Auth::user()) }}" style="text-decoration: none"><button type="submit" class="btn" style="background-color: #014A57; color: white; font-weight: 700">Want to be a premium member?</button></a>
+                                        @endif
+
+    
                                     </div>
                                 </div>
                                 <div class="row mb-4">
                                     <div class="col-md-7">
-                                        @if ($user->enterprise == null)
-                                            @if ($user->subcription_id == null)
-                                                <p class="small mb-0 text-muted">Free Member</p>
-                                            @endif
-                                        @endif
                                         @if ($user->enterprise != null)
                                             <p class="text-muted">Enterprise : {{ $user->enterprise }}</p>
                                         @endif
-                                    </div>
-                                    <div class="col">
-                                        @if ($user->subcription_id != null)
-                                            <p class="small mb-0 text-muted">Subscription</p>
+                                        @if ($user->subscription == null)
+                                            <p class="small mb-0 text-muted">Free Member</p>
+                                        @endif
+                                        @if ($user->subscription != null)
+                                            <p class="small mb-0 text-muted">Premium member</p>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                         <hr class="my-4" />
+
+                    <form action="{{ route('profile.update', $user->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        
                         <div class="form-group" style="margin-bottom: 1rem">
                             <label for="firstname">Firstname</label>
                             <input type="text" name="firstName" id="firstname" class="form-control"
@@ -75,34 +81,35 @@
                         <div class="form-group" style="margin-bottom: 1rem">
                             <label for="lastname">Lastname</label>
                             <input type="text" name="lastName" id="lastname" class="form-control"
-                                placeholder="Last Name" value="{{ old('lastName', $user->Last_Name) }}" required/>
+                                placeholder="Last Name" value="{{ old('lastName', $user->Last_Name) }}" required />
                         </div>
                         <div class="form-group" style="margin-bottom: 1rem">
                             <label for="inputEmail4">Email</label>
                             <input type="email" name="email" class="form-control" id="inputEmail4"
-                                placeholder="email@example.com" value="{{ old('email', $user->email) }}" required/>
+                                placeholder="email@example.com" value="{{ old('email', $user->email) }}" required />
                         </div>
                         <div class="form-group" style="margin-bottom: 1rem">
                             <label for="inputAddress5">Enterprise</label>
                             <input type="text" name="enterprise" class="form-control" id="inputAddress5"
-                                placeholder="AquaVision" value="{{ old('enterprise', $user->enterprise) }}"/>
+                                placeholder="AquaVision" value="{{ old('enterprise', $user->enterprise) }}" />
                         </div>
                         <div class="form-group" style="margin-bottom: 1rem">
                             <label for="inputAddress5">Phone Number</label>
                             <input type="number" name="phone" class="form-control" id="inputAddress5"
-                                placeholder="0808080808" value="{{ old('phone', $user->phone) }}" required/>
+                                placeholder="0808080808" value="{{ old('phone', $user->phone) }}" required />
                         </div>
                         <hr class="my-4" />
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <div class="form-group" style="margin-bottom: 1rem">
                                     <label for="inputPassword5">New Password</label>
-                                    <input type="password" name="password" class="form-control" id="inputPassword5" />
+                                    <input type="password" name="password" class="form-control" id="inputPassword5"
+                                        placeholder="Your New Passowrd" />
                                 </div>
                                 <div class="form-group" style="margin-bottom: 1rem">
                                     <label for="inputPassword6">Confirm Password</label>
                                     <input type="password" name="password_confirmation" class="form-control"
-                                        id="inputPassword6" />
+                                        id="inputPassword6" placeholder="Retype Your New Passowrd" />
                                 </div>
                             </div>
                             <div class="col-md-6">
