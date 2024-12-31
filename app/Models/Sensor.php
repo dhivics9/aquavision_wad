@@ -3,22 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 
 
 class Sensor extends Model
 {
     //
+    use HasFactory;
+    protected $table = 'sensors';
+
     protected $fillable = [
-        'sensor name',
-        'sensor type',
-        'sensor location',
-        'sensor status',
+        'sensor_name',
+        'sensor_type',
+        'sensor_location',
+        'sensor_status',
         'created_at',
         'updated_at',
-        'user_id'
     ];
     public function users():BelongsTo
     {
