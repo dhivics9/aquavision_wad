@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Back Button --}}
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-3">
+    <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-3">
         <a href="" class="btn btn-outline-primary d-flex gap-2">
             <div class="">
                 <span class="material-symbols-rounded fs-6">
@@ -10,16 +10,16 @@
                 </span>
             </div> Data Dosen
         </a>
-    </div>
+    </div> -->
 
     <div class="card">
         <div class="card-body">
             <form>
                 @csrf
                 <div class="mb-3">
-                    <label for="kode_dosen" class="form-label">Kode Dosen</label>
-                    <input type="text" class="form-control @error('kode_dosen') is-invalid @enderror" id="kode_dosen"
-                        name="kode_dosen" placeholder="Masukkan Kode Dosen" value="{{ old('kode_dosen') }}">
+                    <label for="kode_dosen" class="form-label">Level PH</label>
+                    <input type="number" class="form-control @error('kode_dosen') is-invalid @enderror" id="kode_dosen"
+                        name="kode_dosen" placeholder="Masukkan PH Level" value="{{ old('kode_dosen') }}">
                     @error('kode_dosen')
                         <div class="invalid-feedback">
                             {{ $message }}

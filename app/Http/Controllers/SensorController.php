@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sensor;
+use Illuminate\Support\Facades\Auth;
 
 
 class SensorController extends Controller
@@ -22,6 +23,7 @@ class SensorController extends Controller
 
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
             'sensor_name' => 'required|string|max:255',
             'sensor_type' => 'required|string|max:255',
@@ -29,9 +31,11 @@ class SensorController extends Controller
             'sensor_status' => 'nullable|string|in:active,inactive',
         ]);
 
+        $validatedData['users_id'] = Auth::id();
+
         Sensor::create($validatedData);
 
-        return redirect()->route('sensor.index')->with('success', 'Sensor added successfully!');
+        return redirect()->route('sensor.index')->with('successSen', 'Sensor added successfully!');
     }
 
 
@@ -64,13 +68,13 @@ class SensorController extends Controller
         $sensor = Sensor::findOrFail($id);
         $sensor->update($validatedData);
 
-        return redirect()->route('sensor.index')->with('success', 'Sensor updated successfully!');
+        return redirect()->route('sensor.index')->with('successSen', 'Sensor updated successfully!');
     }
 
     public function destroy($id)
     {
         $sensor = Sensor::findOrFail($id);
         $sensor->delete();
-        return redirect()->route('sensor.index')->with('success', 'Sensor delete successfully!');
+        return redirect()->route('sensor.index')->with('successSen', 'Sensor delete successfully!');
     }
 }

@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('report_name')->unique();
             $table->timestamp('report_date');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('water_qualitys_id')->constrained('water_qualitys')->onDelete('cascade');
-            $table->foreignId('sensor_id')->constrained()->onDelete('cascade');
+            $table->foreignId('sensor_id')->constrained('sensors')->onDelete('cascade');
             $table->foreignId('coagulation_analysis_id')->constrained('coagulation_analysis')->onDelete('cascade');
             $table->foreignId('flocculation_analysis_id')->constrained('flocculation_analysis')->onDelete('cascade');
             $table->foreignId('sedimentation_analysis_id')->constrained('sedimentation_analysis')->onDelete('cascade');

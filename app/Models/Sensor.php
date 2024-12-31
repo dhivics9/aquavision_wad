@@ -17,6 +17,7 @@ class Sensor extends Model
     protected $table = 'sensors';
 
     protected $fillable = [
+        'users_id',
         'sensor_name',
         'sensor_type',
         'sensor_location',
