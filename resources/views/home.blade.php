@@ -1,72 +1,148 @@
 @extends('layouts.app')
+
 @section('content')
-    
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h3 style="color: #014A57;">Total Sensor</h3>
-                            <p class="text-secondary">10</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h3 class="text-success">Total Laporan</h3>
-                            <p class="text-secondary">200</p>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <canvas id="myChart" width="400" height="200"></canvas>
-                        </div>
+    <div class="container-fluid">
+        <!-- Dashboard Row -->
+        <div class="row">
+            <!-- Card for Total Sensors -->
+            <div class="col-md-4">
+                <div class="card shadow-sm rounded">
+                    <div class="card-body">
+                        <h4 class="card-title text-primary">Total Sensors</h4>
+                        <ul class="list-group">
+                            @foreach ($sensors as $sensor)
+                                <li class="list-group-item d-flex justify-content-between align-items-center"
+                                    onclick="showChart('sensor1')">
+                                    {{ $sensor->sensor_name }}
+                                    @if ($sensor->sensor_status == 'active')
+                                        <span class="badge bg-success">{{ $sensor->sensor_status }}</span>
+                                    @endif
+                                    @if ($sensor->sensor_status != 'active')
+                                    <span class="badge bg-danger">{{ $sensor->sensor_status }}</span>
+                                @endif
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- Card for Total Reports -->
+            <div class="col-md-4">
+                <div class="card shadow-sm rounded">
+                    <div class="card-body">
+                        <h4 class="card-title text-success">Total Reports</h4>
+                        <p class="text-secondary">200</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm rounded">
+                    <div class="card-body">
+                        <h4 class="card-title text-info">Analysis Chart</h4>
+                        <p class="text-secondary">200</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart Card -->
+            {{-- <div class="col-md-4">
+                <div class="card shadow-sm rounded">
+                    <div class="card-body">
+                        <h4 class="card-title text-info">Analysis Chart</h4>
+                        <canvas id="myChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div> --}}
         </div>
+
     </div>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4'],
-                datasets: [{
-                    label: 'Total Pengecekan Air',
-                    data: [10, 20, 30, 40],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Grafik Total Pengecekan air'
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            color: 'rgba(200, 200, 200, 0.2)'
+        let chartInstance;
+
+        function showChart(sensorId) {
+            let chartData;
+            // Define data for each sensor
+            switch (sensorId) {
+                case 'sensor1':
+                    chartData = {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'Sensor 1 Checkups',
+                            data: [15, 25, 35, 45],
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    };
+                    break;
+                case 'sensor2':
+                    chartData = {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'Sensor 2 Checkups',
+                            data: [20, 30, 40, 50],
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    };
+                    break;
+                case 'sensor3':
+                    chartData = {
+                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                        datasets: [{
+                            label: 'Sensor 3 Checkups',
+                            data: [10, 20, 30, 40],
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    };
+                    break;
+                default:
+                    chartData = {};
+            }
+
+            // If there's an existing chart, destroy it before rendering a new one
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
+
+            // Render the new chart
+            const ctx = document.getElementById('myChart').getContext('2d');
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Water Checkup Analysis'
                         }
                     },
-                    x: {
-                        grid: {
-                            color: 'rgba(200, 200, 200, 0.2)'
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#e2e2e2',
+                            }
                         }
                     }
                 }
-            }
-        });
-    </script> --}}
+            });
+        }
+    </script>
 @endsection
-
