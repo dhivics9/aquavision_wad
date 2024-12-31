@@ -7,28 +7,48 @@ use Illuminate\Http\Request;
 use App\Models\WaterMonitoring;
 use App\Models\Sensor;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AnalisisController extends Controller
 {
+
     public function index()
     {
-        $waterQualities = WaterMonitoring::latest()->paginate(10);
-        return view('analisis.index', compact('waterqualitys'));
+        $nav = 'Analisis';
         
-        if ($waterQualities->isEmpty()) {
-            return view('analisis.empty');
-        }
-    }
+        $sensors = Sensor::all();
 
-    public function getCreateForm(WaterMonitoring $waterMonitoring)
+        dd($sensors);
+
+        // $users = Auth::user();
+
+        // $waterQualities = WaterMonitoring::latest()->paginate(10);
+
+        // return view('analisis.create', compact('nav', 'sensors', 'users'));
+    }
+    
+    // public function index()
+    // {
+    //     $waterQualities = WaterMonitoring::latest()->paginate(10);
+    //     return view('analisis', compact('waterqualitys'));
+        
+    //     if ($waterQualities->isEmpty()) {
+    //         return view('analisis.empty');
+    //     }
+    // }
+
+    public function getCreateForm(WaterMonitoring $waterQuality)
     {
         $user = User::all();
         $sensor = Sensor::all();
-        return view('analisis.create', compact('waterMonitoring','user','sensor'));
+        return view('analisis.create', compact('waterQuality','user','sensor'));
     }
 
     public function store(Request $request)
     {
+
+
+
         $validatedData = $request->validate([
             'ph_level' => 'required|numeric',
             'turbidity' => 'required|numeric',
@@ -48,12 +68,13 @@ class AnalisisController extends Controller
             'e_coli' => 'required|integer',
             'collected_at' => 'required|date',
             'sensor_id' => 'required|exists:sensors,id',
-            'user_id' => 'required|exists:users,id',
         ]);
+
+        $validatedData['users_id'] = Auth::id();
 
         WaterMonitoring::create($validatedData);
 
-        return redirect()->route('analisis.index')->with('success', 'Data created successfully.');
+        return redirect()->route('analisis.create')->with('success', 'Data created successfully.');
     }
 
     public function edit(WaterMonitoring $waterQuality)

@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class WaterMonitoring extends Model
 {
     //
+
+    protected $table = 'water_qualitys';
     protected $fillable = [
         'ph_level',
         'turbidity',
@@ -29,11 +31,11 @@ class WaterMonitoring extends Model
         'collected_at',
         'created_at',
         'sensor_id',
-        'user_id'
+        'users_id'
     ];
     public function users():HasOne
     {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->hasOne(User::class, 'users_id ', 'id');
     }
     public function sensors():HasOne
     {

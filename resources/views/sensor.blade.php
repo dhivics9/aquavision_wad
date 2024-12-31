@@ -74,9 +74,9 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <div class="card p-3" style="border-radius: 10px;">
-                @if(session('success'))
+                @if(session('successSen'))
                     <div class="alert alert-success">
-                        {{ session('success') }}
+                        {{ session('successSen') }}
                     </div>
                 @endif
                 <div class="d-flex justify-content-between align-items-center">

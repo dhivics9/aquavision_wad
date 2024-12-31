@@ -31,7 +31,7 @@ Route::post('/create_sensor', [SensorController::class, 'store'])->name('store_s
 Route::put('/sensors/{id}', [SensorController::class, 'update'])->name('sensor.update');
 Route::delete('/sensors/{id}', [SensorController::class, 'destroy'])->name('sensor.destroy');
 
-Route::get('/analisis', [AnalisisController::class, 'index'])->name('analisis')->middleware('auth');
+
 
 Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile')->middleware('auth');
 Route::put('/profile/{user}', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
@@ -41,3 +41,11 @@ Route::post('/subscription/{user}', [SubscriptionController::class, 'store'])->n
 Route::get('/subscription/success/{subscription}', [SubscriptionController::class, 'success'])->name('subscription.success')->middleware('auth');
 
 Route::post('/clear-session', [SessionController::class, 'clearSession'])->name('clear.session');
+
+Route::get('/analisis/index', [AnalisisController::class, 'index'])->name('analisis')->middleware('auth');
+Route::get('/analisis/create', [AnalisisController::class, 'getCreateForm'])->name('analisis.create')->middleware('auth');
+Route::post('/analisis', [AnalisisController::class, 'store'])->name('analisis.store')->middleware('auth');
+Route::get('/analisis/{analisis}', [AnalisisController::class, 'show'])->name('analisis.show')->middleware('auth');
+Route::get('/analisis/{analisis}/edit', [AnalisisController::class, 'getEditForm'])->name('analisis.edit')->middleware('auth');
+Route::put('/analisis/{analisis}', [AnalisisController::class, 'update'])->name('analisis.update')->middleware('auth');
+Route::delete('/analisis/{analisis}', [AnalisisController::class, 'destroy'])->name('analisis.destroy')->middleware('auth');
