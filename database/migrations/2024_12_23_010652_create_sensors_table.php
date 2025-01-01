@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('sensors', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('users_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('sensor_name');
             $table->string('sensor_type');
             $table->string('sensor_location');
             $table->string('sensor_status')->default('active');
             $table->timestamps(); 
-            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
         });        
     }
 
