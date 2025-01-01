@@ -18,13 +18,20 @@ class AnalisisController extends Controller
         
         $sensors = Sensor::all();
 
-        dd($sensors);
+        // dd($sensors->toArray()->id);
 
-        // $users = Auth::user();
+        // foreach ($sensors as $sensor) {
+        //     dd($sensor->sensor_type); // Dump the sensor object
+        //     echo $sensor->sensor_name; // Access the sensor_name attribute
+        //     echo $sensor->sensor_type; // Access the sensor_type attribute
+        //     // Add more attributes as needed
+        // }
 
-        // $waterQualities = WaterMonitoring::latest()->paginate(10);
+        $users = Auth::user();
 
-        // return view('analisis.create', compact('nav', 'sensors', 'users'));
+        $waterQualities = WaterMonitoring::latest()->paginate(10);
+
+        return view('analisis.create', compact('nav', 'sensors', 'users'));
     }
     
     // public function index()
