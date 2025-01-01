@@ -18,19 +18,27 @@ class filtration_analysis extends Model
         'coliform_total',
         'e_coli',
         'water_qualitys_id',
-        ];
-    public function WaterMonitoring(): BelongsTo
+    ];
+
+    public function waterMonitoring(): BelongsTo
     {
         return $this->belongsTo(WaterMonitoring::class, 'water_qualitys_id', 'id');
     }
-    
-    
-    public function calculateTSS()
+
+    public function calculateEfficiency($before, $after)
+    {
+        if ($before == 0) {
+            return 0;
+        }
+        return (($before - $after) / $before) * 100;
+    }
+
+    public function analyzeTSS()
     {
         if ($this->waterMonitoring) {
-            return $this->waterMonitoring->turbidity * $this->filtration_analysis;
+            return $this->waterMonitoring->turbidity * 0.5;
         }
-        return null; 
+        return null;
     }
     
 }
