@@ -99,9 +99,12 @@
             <div class="mb-3">
                 <label for="sensor_id" class="form-label">Sensor ID</label>
                 <select name="sensor_id" id="sensor_id" class="form-control" required>
-                    @foreach ($sensors as $sensor)
-                        <option value="{{ $sensor->id }}">{{ $sensor->name }}</option>
-                    @endforeach
+                <option value="">-- Pilih Sensor --</option>
+                    @foreach ($sensors as $sensor)                            
+                        <option value="{{ $sensor->id }}" {{ old('sensors_id') == $sensor->id ? 'selected' : '' }}>
+                                {{ $sensor->sensor_name }}
+                            </option>
+                    @endforeach                    
                 </select>
             </div>
             <button type="submit" class="btn btn-success">Simpan</button>
