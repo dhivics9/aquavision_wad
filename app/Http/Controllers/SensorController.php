@@ -5,12 +5,11 @@ use Illuminate\Http\Request;
 use App\Models\Sensor;
 use Illuminate\Support\Facades\Auth;
 
-
 class SensorController extends Controller
 {
     public function index()
     {
-        $sensors = Sensor::all(); 
+        $sensors = Sensor::where('users_id', Auth::id())->get(); 
         $nav = 'Sensor';
 
         return view('sensor', compact('sensors', 'nav')); 
@@ -38,8 +37,6 @@ class SensorController extends Controller
         return redirect()->route('sensor.index')->with('successSen', 'Sensor added successfully!');
     }
 
-
-
     public function show(Sensor $sensor)
     {
         return view('show', compact('sensor'));
@@ -53,7 +50,6 @@ class SensorController extends Controller
             'data' => $sensor,
         ]);
     }
-
 
     public function update(Request $request, $id)
     {

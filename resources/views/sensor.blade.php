@@ -53,8 +53,8 @@
                                         <label for="sensor_status" class="form-label text-custom">Status Sensor</label>
                                         <select class="form-control" id="sensor_status" name="sensor_status" required onchange="updateLastActive()">
                                             <option value="" disabled selected>Pilih Status</option>
-                                            <option value="active">active</option>
-                                            <option value="inactive">inactive</option>
+                                            <option value="active">Aktif</option>
+                                            <option value="inactive">Tidak Aktif</option>
                                         </select>
                                     </div>
                                     <div class="text-start">
@@ -74,9 +74,9 @@
     <div class="row justify-content-center mt-4">
         <div class="col-md-8">
             <div class="card p-3" style="border-radius: 10px;">
-                @if(session('successSen'))
+                @if(session('success'))
                     <div class="alert alert-success">
-                        {{ session('successSen') }}
+                        {{ session('success') }}
                     </div>
                 @endif
                 <div class="d-flex justify-content-between align-items-center">
@@ -191,7 +191,6 @@
         </div>
     </div>
 </div>
-@endsection
 
 <script>
     const editSensorModal = document.getElementById('editSensorModal');
@@ -213,3 +212,4 @@
     });
 </script>
 
+@endsection
