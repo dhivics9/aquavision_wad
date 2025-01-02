@@ -8,53 +8,34 @@ use App\Models\WaterMonitoring;
 use App\Models\Sensor;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use IntlDateFormatter;
 
 class AnalisisController extends Controller
 {
 
     public function index()
     {
-        $nav = 'Analisis';
+        $nav = 'Data Air';
         
-        $sensors = Sensor::all();
-
-        // dd($sensors->toArray()->id);
-
-        // foreach ($sensors as $sensor) {
-        //     dd($sensor->sensor_type); // Dump the sensor object
-        //     echo $sensor->sensor_name; // Access the sensor_name attribute
-        //     echo $sensor->sensor_type; // Access the sensor_type attribute
-        //     // Add more attributes as needed
-        // }
+        $sensors = Sensor::where('users_id', Auth::id())->get(); 
 
         $users = Auth::user();
 
-        $waterQualities = WaterMonitoring::latest()->paginate(10);
+        $waterQualities = WaterMonitoring::where('users_id', Auth::id())->latest()->paginate(10);
 
-        return view('analisis.create', compact('nav', 'sensors', 'users'));
+        return view('analisis.index', compact('nav', 'sensors', 'users', 'waterQualities'));
     }
-    
-    // public function index()
-    // {
-    //     $waterQualities = WaterMonitoring::latest()->paginate(10);
-    //     return view('analisis', compact('waterqualitys'));
-        
-    //     if ($waterQualities->isEmpty()) {
-    //         return view('analisis.empty');
-    //     }
-    // }
 
     public function getCreateForm(WaterMonitoring $waterQuality)
     {
-        $user = User::all();
-        $sensor = Sensor::all();
-        return view('analisis.create', compact('waterQuality','user','sensor'));
+        $nav = 'Tambah data air';
+        $users = Auth::user();
+        $sensors = Sensor::where('users_id', Auth::id())->get(); 
+        return view('analisis.create', compact('nav', 'sensors', 'users'));
     }
 
     public function store(Request $request)
     {
-
-
 
         $validatedData = $request->validate([
             'ph_level' => 'required|numeric',
@@ -73,32 +54,34 @@ class AnalisisController extends Controller
             'manganese' => 'required|numeric',
             'coliform_total' => 'required|integer',
             'e_coli' => 'required|integer',
-            'collected_at' => 'required|date',
-            'sensor_id' => 'required|exists:sensors,id',
+            'sensors_id' => 'required|exists:sensors,id',
         ]);
+
+        
 
         $validatedData['users_id'] = Auth::id();
 
         WaterMonitoring::create($validatedData);
 
-        return redirect()->route('analisis.create')->with('success', 'Data created successfully.');
+        return redirect()->route('analisis.index')->with('successWater', 'Data created successfully.');
     }
 
-    public function edit(WaterMonitoring $waterQuality)
+    public function show(WaterMonitoring $waterQuality)
     {
-        return view('analisis.edit', compact('waterQuality'));
+        $sensors = Sensor::where('users_id', Auth::id())->get(); 
+        $users = Auth::user();
+
+        $sensor = $sensors->firstWhere('id', $waterQuality->sensors_id);
+        if ($sensor) {
+            $nav = 'Detail Data Air ' . $sensor->sensor_name . ', Tanggal : ' . $waterQuality->updated_at;
+        }
+
+        return view('analisis.show', compact('waterQuality', 'nav', 'sensors', 'users'));
     }
 
-    public function getEditForm(WaterMonitoring $waterQuality)
+    public function update(Request $request, WaterMonitoring $waterQuality)
     {
-        $user = User::all();
-        $sensor = Sensor::all();
-        return view('analisis.edit', compact('waterQuality','user','sensor'));
-    }
-
-    public function update(Request $request, string $id)
-    {
-        $val = $request->validate([
+        $validatedData = $request->validate([
             'ph_level' => 'required|numeric',
             'turbidity' => 'required|numeric',
             'temperature' => 'required|numeric',
@@ -115,26 +98,54 @@ class AnalisisController extends Controller
             'manganese' => 'required|numeric',
             'coliform_total' => 'required|integer',
             'e_coli' => 'required|integer',
-            'collected_at' => 'required|date',
-            'sensor_id' => 'required|exists:sensors,id',
-            'user_id' => 'required|exists:users,id',
         ]);
-        $waterQuality = WaterMonitoring::findOrFail($id);
-        $waterQuality->update($val);
 
-        return redirect()->route('analisis.index')->with('success', 'Data updated successfully.');
+        
+        $waterQuality->update($validatedData);
+
+        return redirect()->route('analisis.show', compact('waterQuality'))->with('successWater', 'Data updated successfully.');
     }
 
-    public function destroy(string $id)
+    public function destroy(WaterMonitoring $waterQuality)
     {
-        $waterQuality=WaterMonitoring::findOrFail($id);
         $waterQuality->delete();
-        return redirect()->route('analisis.index')->with('success', 'Data deleted successfully.');
+        return redirect()->route('analisis.index')->with('successWater', 'Data deleted successfully.');
     }
-    public function show(string $id)
+
+    public function pdf_generator(WaterMonitoring $waterQuality) 
     {
-        $waterQuality = WaterMonitoring::findOrFail($id);
-        return view('analisis.show', compact('waterQuality'));
+
+        $formatter = new IntlDateFormatter('id_ID', IntlDateFormatter::FULL, IntlDateFormatter::NONE);
+        $formatter->setPattern('d MMMM yyyy');
+        $formattedDate = $formatter->format(new \DateTime());
+
+        $data = [
+            'title'=> 'Water Monitoring',
+            'dataOneTitle' => 'ph_level',
+            'dataTwoTitle' => 'turbidity',
+            'dataThreeTitle' => 'temperature',
+            'dataFourTitle' => 'color',
+            'dataFiveTitle' => 'tds',
+            'dataSixTitle' => 'hardness',
+            'dataSevenTitle' => 'nitrate',
+            'dataEightTitle' => 'nitrite',
+            'dataNineTitle' => 'ammonia',
+            'dataTenTitle' => 'chloride',
+            'dataElevenTitle' => 'sulfate',
+            'dataTwelveTitle' => 'fluoride',
+            'dataThirteenTitle' => 'iron',
+            'dataFourteenTitle' => 'manganese',
+            'dataFifteenTitle' => 'coliform_total',
+            'dataSixteenTitle' => 'e_coli',
+            'datas' => [$waterQuality],
+            'date' => $formattedDate,
+        ];
+
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('pdfwater', $data);
+
+        return $pdf->download('Water.pdf');
+
     }
+
 }
-  
