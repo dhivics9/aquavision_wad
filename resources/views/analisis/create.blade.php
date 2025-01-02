@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <section class="container mt-5">
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -25,7 +26,6 @@
             </script>
         @endif
 
-        <h2>Tambah Data Monitoring Air</h2>
         <form action="{{ route('analisis.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
@@ -93,23 +93,20 @@
                 <input type="number" name="e_coli" id="e_coli" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label for="collected_at" class="form-label">Collected At</label>
-                <input type="number" name="collected_at" id="collected_at" class="form-control" required>
-            </div>
-            <div class="mb-3">
                 <label for="sensor_id" class="form-label">Sensor ID</label>
-                <select name="sensor_id" id="sensor_id" class="form-control" required>
+                <select name="sensors_id" id="sensors_id" class="form-control" required>
                 <option value="">-- Pilih Sensor --</option>
-                    @foreach ($sensors as $sensor)                            
+                    @foreach ($sensors as $sensor)       
+                        @if ($sensor->sensor_status == 'active')
                         <option value="{{ $sensor->id }}" {{ old('sensors_id') == $sensor->id ? 'selected' : '' }}>
-                                {{ $sensor->sensor_name }}
-                            </option>
+                            {{ $sensor->sensor_name }}
+                        </option>
+                        @endif
                     @endforeach                    
                 </select>
             </div>
-            <button type="submit" class="btn btn-success">Simpan</button>
-            <a href="{{ route('analisis.store') }}" class="btn btn-secondary">Kembali</a>
+            <button type="submit" class="btn" style="background-color: #014A57; color: white">Simpan</button>
+            <a href="{{ route('analisis.index') }}" class="btn btn-secondary">Kembali</a>
         </form>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-@endsection</div>
+@endsection
