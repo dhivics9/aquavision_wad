@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FiltrationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SensorController;
 use App\Http\Controllers\SessionController;
@@ -49,3 +50,9 @@ Route::get('/analisis/{analisis}', [AnalisisController::class, 'show'])->name('a
 Route::get('/analisis/{analisis}/edit', [AnalisisController::class, 'getEditForm'])->name('analisis.edit')->middleware('auth');
 Route::put('/analisis/{analisis}', [AnalisisController::class, 'update'])->name('analisis.update')->middleware('auth');
 Route::delete('/analisis/{analisis}', [AnalisisController::class, 'destroy'])->name('analisis.destroy')->middleware('auth');
+
+Route::get('/filtration/create/{waterQuality}', [FiltrationController::class, 'getCreateForm'])->name('filtration.create')->middleware('auth');
+Route::post('/filtration/create/{waterQuality}', [FiltrationController::class, 'store'])->name('filtration.store')->middleware('auth');
+Route::put('/filtration/create/{filtration_analysis}/{waterQuality}', [FiltrationController::class, 'update'])->name('filtration.update')->middleware('auth');
+Route::delete('/filtration/create/{filtration_analysis}/{waterQuality}', [FiltrationController::class, 'destroy'])->name('filtration.destroy')->middleware('auth');
+Route::get('/filtration_pdf/{filtration_analysis}/{waterQuality}', [FiltrationController::class, 'pdf_generator'])->name('filtration.pdf')->middleware('auth');
