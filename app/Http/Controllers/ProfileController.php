@@ -17,32 +17,35 @@ class ProfileController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'enterprise' => 'nullable',
-            'email' => 'required|email:dnsunique:users,email,' . $user->id,
-            'phone' => 'required|numeric|unique:users,phone,' . $user->id,
-            'password' => 'nullable|confirmed|min:8',
-        ]);
 
-        $user->update([
-            'First_Name' => $request->firstName,
-            'Last_Name' => $request->lastName,
-            'enterprise' => null,
-            'email' => $request->email,
-            'phone' => $request->phone,            
-        ]);
+        dd($user);
 
-        if (!empty($request->password)) {
-            $user->update([
-                'password' => Hash::make($request->password),
-            ]);
-        }
+        // $request->validate([
+        //     'firstName' => 'required',
+        //     'lastName' => 'required',
+        //     'enterprise' => 'nullable',
+        //     'email' => 'required|email:dnsunique:users,email,' . $user->id,
+        //     'phone' => 'required|numeric|unique:users,phone,' . $user->id,
+        //     'password' => 'nullable|confirmed|min:8',
+        // ]);
 
-        $request->session()->put('updateProfile', 'Successfully updated your profile!');
+        // $user->update([
+        //     'First_Name' => $request->firstName,
+        //     'Last_Name' => $request->lastName,
+        //     'enterprise' => null,
+        //     'email' => $request->email,
+        //     'phone' => $request->phone,            
+        // ]);
 
-        return view('profile', compact('user'));
+        // if (!empty($request->password)) {
+        //     $user->update([
+        //         'password' => Hash::make($request->password),
+        //     ]);
+        // }
+
+        // $request->session()->put('updateProfile', 'Successfully updated your profile!');
+
+        // return view('profile', compact('user'));
     }
 
 }
