@@ -41,7 +41,7 @@
                     @endif
                 </a>
             </li>
-            <li class="mb-3 @if (Route::is('analisis')) fw-bold ms-3 @endif">
+            <li class="mb-3 @if (Route::is('analisis.index')) fw-bold ms-3 @endif">
                 <a href="/analisis/index" class="nav-link px-0 align-middle text-white d-flex">
                     <div class="">
                         <span class="material-symbols-rounded">
