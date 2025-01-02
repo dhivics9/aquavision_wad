@@ -41,73 +41,22 @@
                     @endif
                 </a>
             </li>
-            <li class="mb-3 @if (Route::is('analisis')) fw-bold ms-3 @endif">
-                <a href="/analisis/index" class="nav-link px-0 align-middle text-white d-flex">
+            <li class="mb-3 @if (Route::is('analisis.index')) fw-bold ms-3 @endif">
+                <a href="/analisis" class="nav-link px-0 align-middle text-white d-flex">
                     <div class="">
                         <span class="material-symbols-rounded">
                             book_4
                         </span>
                     </div>
                     <div class="ms-3 d-none d-sm-inline ">
-                        <span>Daftar Monitoring Air</span>
+                        <span>Data Air</span>
                     </div>
-                    @if (Route::is('analisis'))
+                    @if (Route::is('analisis.index'))
                         <div class="ms-3">
                             <span class="material-symbols-rounded fs-6 text-warning shadow">circle</span>
                         </div>
                     @endif
                 </a>
             </li>
-
-            <li class="mb-3 @if (Route::is('dosen.create')) fw-bold ms-3 @endif">
-                <a href="/dosen/create" class="nav-link px-0 align-middle text-white d-flex">
-                    <div class="">
-                        <span class="material-symbols-rounded">
-                            add
-                        </span>
-                    </div>
-                    <div class="ms-3 d-none d-sm-inline ">
-                        <span>Tambah Sensor</span>
-                    </div>
-                    @if (Route::is('dosen.create'))
-                        <div class="ms-3">
-                            <span class="material-symbols-rounded fs-6 text-warning shadow">circle</span>
-                        </div>
-                    @endif
-                </a>
-            </li>
-            {{-- <li class="mb-3 @if (Route::is('sensor')) fw-bold ms-3 @endif">
-                <a href="/sensor" class="nav-link px-0 align-middle text-white d-flex">
-                    <div class="">
-                        <span class="material-symbols-rounded">
-                            book_4
-                        </span>
-                    </div>
-                    <div class="ms-3 d-none d-sm-inline ">
-                        <span>Data Analisis</span>
-                    </div>
-                    @if (Route::is('sensor'))
-                        <div class="ms-3">
-                            <span class="material-symbols-rounded fs-6 text-warning shadow">circle</span>
-                        </div>
-                    @endif
-                </a>
-            </li> --}}
-        </ul>
-        <hr>
-        {{-- @if (Auth::check())
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Dropdown
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-        @endif --}}
     </div>
 </nav>
