@@ -29,8 +29,7 @@ return new class extends Migration
             $table->decimal('manganese', 6, 2);
             $table->integer('coliform_total');
             $table->integer('e_coli');
-            $table->timestamp('collected_at');
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamps();
             $table->foreignId('sensors_id')->constrained('sensors');
             $table->foreignId('users_id')->constrained('users');
         });
